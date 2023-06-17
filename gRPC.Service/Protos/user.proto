@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "gRPC.Service";
+
+import "google/protobuf/empty.proto";
+
+package user;
+
+service User {
+  rpc AddUser (AddUserRequest) returns (Response);
+  rpc GetUsers (google.protobuf.Empty) returns (stream UserModel);
+}
+
+message AddUserRequest {
+  string name = 1;
+  string surname = 2;
+}
+
+message UserModel {
+	int32 id = 1;
+	string name = 2;
+	string surname = 3;
+}
+
+message Response {
+  string message = 1;
+}
